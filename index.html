@@ -291,30 +291,7 @@
   </div>
 </div>
 
-<!-- Birthday Music Player -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="media/birthday-music.mp3" type="audio/mpeg">
-</audio>
-<div id="musicControl" style="
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 99999;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #9b59b6, #8e44ad, #a855f7);
-  border: 2px solid rgba(255,255,255,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 24px rgba(155, 89, 182, 0.5);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-" onclick="toggleMusic()" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-  <span id="musicIcon" style="font-size: 24px; color: white; user-select: none;">🎵</span>
-</div>
+<!-- Birthday Welcome -->
 <div id="musicNotice" style="
   position: fixed;
   top: 50%;
@@ -335,11 +312,11 @@
   gap: 16px;
 ">
   <div style="font-size: 48px;">🎂</div>
-  <h2 style="color: #f0e6ff; font-size: 24px; margin: 0;">Happy Birthday Shruti!</h2>
-  <p style="color: #c4a8e0; font-size: 14px; margin: 0;">Click below to enter with music</p>
-  <button onclick="startWithMusic()" style="
+  <h2 style="color: #f0e6ff; font-size: 24px; margin: 0;">Happy Birthday Shruti Pachkate!</h2>
+  <p style="color: #c4a8e0; font-size: 14px; margin: 0;">A special surprise awaits you 💜</p>
+  <button onclick="enterSite()" style="
     margin-top: 8px;
-    padding: 14px 40px;
+    padding: 14px 48px;
     background: linear-gradient(135deg, #9b59b6, #a855f7);
     color: white;
     border: none;
@@ -349,54 +326,10 @@
     cursor: pointer;
     transition: all 0.3s;
     font-family: 'Inter', sans-serif;
-  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🎵 Enter with Music</button>
-  <button onclick="startWithoutMusic()" style="
-    padding: 8px 24px;
-    background: transparent;
-    color: #9a7ebf;
-    border: 1px solid rgba(155,89,182,0.3);
-    border-radius: 50px;
-    font-size: 13px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-  ">Enter without music</button>
+  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">🎉 Enter</button>
 </div>
-<script>
-let isPlaying = false;
-const music = document.getElementById('bgMusic');
-const icon = document.getElementById('musicIcon');
-const notice = document.getElementById('musicNotice');
 
-function startWithMusic() {
-  notice.style.display = 'none';
-  music.volume = 0.5;
-  music.play().then(() => {
-    isPlaying = true;
-    icon.textContent = '🔊';
-  }).catch(() => {
-    isPlaying = false;
-    icon.textContent = '🎵';
-  });
-}
-function startWithoutMusic() {
-  notice.style.display = 'none';
-}
-function toggleMusic() {
-  if (isPlaying) {
-    music.pause();
-    icon.textContent = '🎵';
-    isPlaying = false;
-  } else {
-    music.volume = 0.5;
-    music.play().then(() => {
-      icon.textContent = '🔊';
-      isPlaying = true;
-    });
-  }
-}
-</script>
-
-<!-- Patakhe (Fireworks) Animation with Shruti's Name -->
+<!-- Fireworks Animation with Shruti's Name -->
 <canvas id="fireworksCanvas" style="
   position: fixed;
   top: 0;
@@ -466,7 +399,6 @@ function toggleMusic() {
 </div>
 
 <script>
-// Fireworks Canvas Animation
 const fwCanvas = document.getElementById('fireworksCanvas');
 const fwCtx = fwCanvas.getContext('2d');
 let fireworks = [];
@@ -531,12 +463,9 @@ function animateFireworks() {
   if (!fwRunning) return;
   fwCtx.fillStyle = 'rgba(18, 5, 32, 0.15)';
   fwCtx.fillRect(0, 0, fwCanvas.width, fwCanvas.height);
-
   if (Math.random() < 0.08) fireworks.push(new Firework());
-
   fireworks = fireworks.filter(f => f.alive);
   fireworks.forEach(f => { f.update(); f.draw(); });
-
   particles = particles.filter(p => p.alpha > 0);
   particles.forEach(p => {
     p.x += p.vx;
@@ -549,7 +478,6 @@ function animateFireworks() {
     fwCtx.fillStyle = `hsla(${p.hue}, 90%, 65%, ${p.alpha})`;
     fwCtx.fill();
   });
-
   requestAnimationFrame(animateFireworks);
 }
 
@@ -568,39 +496,25 @@ function addSparkles() {
   }
 }
 
-function launchPatakhe() {
+function enterSite() {
+  document.getElementById('musicNotice').style.display = 'none';
+  // Launch fireworks
   resizeFWCanvas();
   window.addEventListener('resize', resizeFWCanvas);
   fwCanvas.style.display = 'block';
   fwRunning = true;
   animateFireworks();
-
   const nameOverlay = document.getElementById('birthdayNameOverlay');
   nameOverlay.style.display = 'block';
   addSparkles();
-
   setTimeout(() => addSparkles(), 1500);
   setTimeout(() => addSparkles(), 3000);
-
   setTimeout(() => {
     fwRunning = false;
     fwCanvas.style.display = 'none';
     nameOverlay.style.display = 'none';
   }, 5500);
 }
-
-// Hook into existing entry buttons
-const origStartWithMusic = startWithMusic;
-const origStartWithoutMusic = startWithoutMusic;
-
-startWithMusic = function() {
-  origStartWithMusic();
-  launchPatakhe();
-};
-startWithoutMusic = function() {
-  origStartWithoutMusic();
-  launchPatakhe();
-};
 </script>
 
 </body></html>

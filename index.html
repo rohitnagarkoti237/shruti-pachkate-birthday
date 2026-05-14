@@ -396,4 +396,211 @@ function toggleMusic() {
 }
 </script>
 
+<!-- Patakhe (Fireworks) Animation with Shruti's Name -->
+<canvas id="fireworksCanvas" style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999998;
+  pointer-events: none;
+  display: none;
+"></canvas>
+
+<style>
+@keyframes nameGlow {
+  0%, 100% { text-shadow: 0 0 20px #a855f7, 0 0 40px #9b59b6, 0 0 60px #7e22ce; }
+  50% { text-shadow: 0 0 40px #a855f7, 0 0 80px #9b59b6, 0 0 120px #7e22ce, 0 0 160px #6b21a8; }
+}
+@keyframes floatUp {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  30% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+#birthdayNameOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+  text-align: center;
+  pointer-events: none;
+  display: none;
+  animation: floatUp 5s ease-in-out forwards;
+}
+#birthdayNameOverlay h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: #f0e6ff;
+  animation: nameGlow 1.5s ease-in-out infinite;
+  margin: 0;
+  line-height: 1.2;
+}
+#birthdayNameOverlay p {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  color: #c4a8e0;
+  margin-top: 8px;
+}
+.sparkle-star {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999997;
+  font-size: 24px;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+</style>
+
+<div id="birthdayNameOverlay">
+  <div style="font-size: 64px; margin-bottom: 12px;">🎆✨🎇</div>
+  <h1>SHRUTI</h1>
+  <p>🎂 Happy Birthday! 🎂</p>
+  <div style="font-size: 48px; margin-top: 12px;">🎉🥳💜</div>
+</div>
+
+<script>
+// Fireworks Canvas Animation
+const fwCanvas = document.getElementById('fireworksCanvas');
+const fwCtx = fwCanvas.getContext('2d');
+let fireworks = [];
+let particles = [];
+let fwRunning = false;
+
+function resizeFWCanvas() {
+  fwCanvas.width = window.innerWidth;
+  fwCanvas.height = window.innerHeight;
+}
+
+class Firework {
+  constructor() {
+    this.x = Math.random() * fwCanvas.width;
+    this.y = fwCanvas.height;
+    this.targetY = Math.random() * fwCanvas.height * 0.5;
+    this.speed = 4 + Math.random() * 4;
+    this.hue = [280, 300, 320, 260, 340][Math.floor(Math.random() * 5)];
+    this.alive = true;
+    this.trail = [];
+  }
+  update() {
+    this.trail.push({x: this.x, y: this.y, alpha: 1});
+    if (this.trail.length > 8) this.trail.shift();
+    this.y -= this.speed;
+    if (this.y <= this.targetY) {
+      this.explode();
+      this.alive = false;
+    }
+  }
+  explode() {
+    const count = 60 + Math.floor(Math.random() * 40);
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 / count) * i;
+      const speed = 2 + Math.random() * 5;
+      particles.push({
+        x: this.x, y: this.y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        alpha: 1,
+        hue: this.hue + Math.random() * 30 - 15,
+        size: 2 + Math.random() * 2,
+        decay: 0.01 + Math.random() * 0.02
+      });
+    }
+  }
+  draw() {
+    this.trail.forEach((t, i) => {
+      fwCtx.beginPath();
+      fwCtx.arc(t.x, t.y, 2, 0, Math.PI * 2);
+      fwCtx.fillStyle = `hsla(${this.hue}, 80%, 70%, ${i / this.trail.length})`;
+      fwCtx.fill();
+    });
+    fwCtx.beginPath();
+    fwCtx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+    fwCtx.fillStyle = `hsl(${this.hue}, 100%, 80%)`;
+    fwCtx.fill();
+  }
+}
+
+function animateFireworks() {
+  if (!fwRunning) return;
+  fwCtx.fillStyle = 'rgba(18, 5, 32, 0.15)';
+  fwCtx.fillRect(0, 0, fwCanvas.width, fwCanvas.height);
+
+  if (Math.random() < 0.08) fireworks.push(new Firework());
+
+  fireworks = fireworks.filter(f => f.alive);
+  fireworks.forEach(f => { f.update(); f.draw(); });
+
+  particles = particles.filter(p => p.alpha > 0);
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.05;
+    p.vx *= 0.99;
+    p.alpha -= p.decay;
+    fwCtx.beginPath();
+    fwCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    fwCtx.fillStyle = `hsla(${p.hue}, 90%, 65%, ${p.alpha})`;
+    fwCtx.fill();
+  });
+
+  requestAnimationFrame(animateFireworks);
+}
+
+function addSparkles() {
+  const emojis = ['✨', '⭐', '💜', '🌟', '💫'];
+  for (let i = 0; i < 20; i++) {
+    const star = document.createElement('div');
+    star.className = 'sparkle-star';
+    star.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 2 + 's';
+    star.style.fontSize = (16 + Math.random() * 24) + 'px';
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 5000);
+  }
+}
+
+function launchPatakhe() {
+  resizeFWCanvas();
+  window.addEventListener('resize', resizeFWCanvas);
+  fwCanvas.style.display = 'block';
+  fwRunning = true;
+  animateFireworks();
+
+  const nameOverlay = document.getElementById('birthdayNameOverlay');
+  nameOverlay.style.display = 'block';
+  addSparkles();
+
+  setTimeout(() => addSparkles(), 1500);
+  setTimeout(() => addSparkles(), 3000);
+
+  setTimeout(() => {
+    fwRunning = false;
+    fwCanvas.style.display = 'none';
+    nameOverlay.style.display = 'none';
+  }, 5500);
+}
+
+// Hook into existing entry buttons
+const origStartWithMusic = startWithMusic;
+const origStartWithoutMusic = startWithoutMusic;
+
+startWithMusic = function() {
+  origStartWithMusic();
+  launchPatakhe();
+};
+startWithoutMusic = function() {
+  origStartWithoutMusic();
+  launchPatakhe();
+};
+</script>
+
 </body></html>

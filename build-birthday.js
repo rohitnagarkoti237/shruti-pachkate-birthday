@@ -486,11 +486,35 @@ ${videoCards}
     </div>
   </section>
 
+  <!-- Marathi Birthday Message -->
+  <section class="section" style="padding-bottom: 40px;">
+    <div class="message-card" style="margin: 0; padding: 64px 40px; background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(126,34,206,0.08)); border: 1px solid rgba(168,85,247,0.3);">
+      <div class="msg-emoji" style="font-size: 64px;">🪔</div>
+      <h3 style="font-size: 36px; margin-bottom: 24px;">वाढदिवसाच्या हार्दिक शुभेच्छा! 🎂</h3>
+      <p style="font-size: 18px; line-height: 2; max-width: 700px;">
+        प्रिय श्रुती,<br><br>
+        तुझ्या वाढदिवसाच्या खूप खूप शुभेच्छा! 💜<br>
+        तू माझ्या आयुष्यातला सगळ्यात सुंदर भाग आहेस.<br>
+        आपण एकत्र काम केलं, एकत्र हसलो, एकत्र वाढलो —<br>
+        तीन वर्षांहून अधिक काळ, आणि प्रत्येक क्षण अविस्मरणीय आहे.<br><br>
+        तुझं हसणं माझ्या जगण्याचं कारण आहे.<br>
+        तुझं असणं माझं सर्वस्व आहे.<br>
+        या वाढदिवशी मी फक्त एवढंच सांगू इच्छितो —<br>
+        <strong style="color: #e9d5ff;">तू माझ्यासाठी सगळं काही आहेस.</strong><br><br>
+        तुझं प्रत्येक स्वप्न पूर्ण होवो,<br>
+        तुला जगातलं सगळं सुख मिळो,<br>
+        आणि आपलं नातं असंच कायम राहो. 🌹<br><br>
+        <em style="color: #a855f7;">— तुझ्यावर खूप प्रेम करणारा ❤️</em>
+      </p>
+    </div>
+  </section>
+
   <!-- Footer -->
   <div class="footer">
     <div class="hearts">💜💜💜</div>
-    <p>Made with love for Shruti Pachkate 🎂</p>
-    <p style="margin-top: 8px; font-size: 12px; color: #6b4f8a;">Happy Birthday! 🥳</p>
+    <p style="font-size: 18px; color: #c4a8e0; margin-bottom: 8px;">श्रुती पचकटे, तू खूप खास आहेस! 🎂</p>
+    <p>Made with love for Shruti Pachkate 💜</p>
+    <p style="margin-top: 8px; font-size: 12px; color: #6b4f8a;">वाढदिवसाच्या शुभेच्छा! 🥳</p>
   </div>
 
   <!-- Lightbox -->

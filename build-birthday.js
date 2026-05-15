@@ -20,11 +20,54 @@ const videos = [
   'VN20240605_123303.mp4'
 ];
 
-// Build photo grid HTML
-const photoCards = userPhotos.map((img, i) => `
+// Birthday messages to insert between photo groups
+const birthdayMessages = [
+  { emoji: '💜', title: '3+ Years & Counting...', text: 'From colleagues to soulmates — who knew that one office could hold so much love? Every day with you has been a blessing, Shruti.' },
+  { emoji: '✨', title: 'Where It All Began', text: 'We started in the same company, sat in the same office, and somehow the universe knew we were meant for so much more. Thank you for being my everything.' },
+  { emoji: '🥰', title: 'My Favorite Person', text: 'You make ordinary days extraordinary. Your smile lights up my world, and your laughter is my favorite sound. Happy Birthday, Shruti!' },
+  { emoji: '🎂', title: 'A Birthday Wish', text: 'On your special day, I want you to know — you deserve all the happiness in the world. May this year bring you everything your beautiful heart desires.' },
+  { emoji: '💫', title: 'You Are My Home', text: 'No matter where life takes us, you will always be my safe place. I am so grateful for every moment we have shared together.' },
+  { emoji: '🌹', title: 'To My Better Half', text: '3 years of memories, laughter, late-night talks, and growing together. I wouldn\'t trade a single second. Here\'s to forever, Shruti.' },
+  { emoji: '🎉', title: 'Celebrating You!', text: 'Today is all about YOU — the most amazing, beautiful, and kind-hearted person I know. I am so lucky to call you mine. Happy Birthday!' },
+  { emoji: '💐', title: 'From Desk Mates to Soulmates', text: 'Who would have thought that two people sitting in the same office would end up writing the most beautiful love story? I love our story.' },
+  { emoji: '🦋', title: 'Growing Together', text: 'From our first conversation to this very moment — we have grown so much together. Every chapter with you gets better and better.' },
+  { emoji: '🌙', title: 'My Constant', text: 'Through every high and low, every laugh and tear, you have been my rock. I love you more than words can say. Happy Birthday, beautiful!' },
+  { emoji: '🫶', title: 'Forever Grateful', text: 'Grateful for every sunrise I wake up knowing you are in my life. You make everything worth it. Cheers to another amazing year together!' },
+  { emoji: '🎈', title: 'Here\'s to Us', text: 'Every photo here holds a memory. Every memory holds a feeling. And every feeling reminds me how deeply I love you, Shruti Pachkate. 💜' },
+  { emoji: '🥂', title: 'A Toast to You', text: 'To the girl who turned a regular office into a love story — may your birthday be as wonderful and special as you are to me.' },
+  { emoji: '🌸', title: 'My Sunshine', text: 'You bring color to my world and warmth to my soul. 3+ years and I still get butterflies when I see you smile. Never stop smiling, Shruti.' },
+  { emoji: '💌', title: 'A Promise', text: 'I promise to keep making you laugh, to hold your hand through everything, and to celebrate every single birthday with you. Always and forever.' },
+  { emoji: '🎊', title: 'The Best Chapter', text: 'Life gave me many things, but the best gift was finding you. Happy Birthday to the one who makes my heart complete. 💜' },
+  { emoji: '⭐', title: 'You Shine Bright', text: 'Among all the people in the world, you shine the brightest. Keep being the incredible person you are. The world is better because you are in it.' },
+  { emoji: '🌷', title: 'My Endless Love', text: 'From sharing a workplace to sharing a life — every moment has been worth it. I love you endlessly, Shruti. Happy Birthday, my love!' },
+  { emoji: '💝', title: 'More Than Words', text: 'No birthday message can capture what you mean to me. But I hope these photos, these memories, remind you of how beautiful our journey has been.' },
+  { emoji: '🎁', title: 'The Greatest Gift', text: 'You are the greatest gift life has ever given me. On your birthday, I just want to say — thank you for choosing me. I love you, Shruti Pachkate. 💜🎂' },
+];
+
+// Build photo grid HTML with messages after every 3 photos
+let photoCardsArr = [];
+let msgIndex = 0;
+
+userPhotos.forEach((img, i) => {
+  photoCardsArr.push(`
       <div class="photo-card" style="animation-delay: ${(i % 10) * 0.1}s">
         <img src="images/${img}" alt="Memory ${i+1}" loading="lazy" onclick="openLightbox(this.src)">
-      </div>`).join('');
+      </div>`);
+  
+  // After every 3 photos, insert a message card
+  if ((i + 1) % 3 === 0 && msgIndex < birthdayMessages.length) {
+    const msg = birthdayMessages[msgIndex];
+    photoCardsArr.push(`
+      <div class="message-card">
+        <div class="msg-emoji">${msg.emoji}</div>
+        <h3>${msg.title}</h3>
+        <p>${msg.text}</p>
+      </div>`);
+    msgIndex++;
+  }
+});
+
+const photoCards = photoCardsArr.join('');
 
 // Build video cards
 const videoCards = videos.map((v, i) => `
@@ -248,6 +291,56 @@ const html = `<!DOCTYPE html>
       transition: transform 0.4s ease;
     }
     .photo-card:hover img { transform: scale(1.05); }
+
+    /* Birthday Message Cards */
+    .message-card {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 32px;
+      margin: 24px 0;
+      background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(126,34,206,0.05));
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .message-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #a855f7, #7c3aed, transparent);
+    }
+    .message-card .msg-emoji {
+      font-size: 48px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 12px rgba(168,85,247,0.4));
+    }
+    .message-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e9d5ff, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .message-card p {
+      color: #c4a8e0;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+    @media (max-width: 768px) {
+      .message-card { padding: 32px 20px; }
+      .message-card h3 { font-size: 22px; }
+      .message-card p { font-size: 14px; }
+    }
 
     /* Video Section */
     .video-grid {

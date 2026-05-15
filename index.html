@@ -213,6 +213,56 @@
     }
     .photo-card:hover img { transform: scale(1.05); }
 
+    /* Birthday Message Cards */
+    .message-card {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 32px;
+      margin: 24px 0;
+      background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(126,34,206,0.05));
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .message-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #a855f7, #7c3aed, transparent);
+    }
+    .message-card .msg-emoji {
+      font-size: 48px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 12px rgba(168,85,247,0.4));
+    }
+    .message-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e9d5ff, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .message-card p {
+      color: #c4a8e0;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+    @media (max-width: 768px) {
+      .message-card { padding: 32px 20px; }
+      .message-card h3 { font-size: 22px; }
+      .message-card p { font-size: 14px; }
+    }
+
     /* Video Section */
     .video-grid {
       display: grid;
@@ -354,6 +404,11 @@
       <div class="photo-card" style="animation-delay: 0.2s">
         <img src="images/20250817_102710.jpg" alt="Memory 3" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">💜</div>
+        <h3>3+ Years & Counting...</h3>
+        <p>From colleagues to soulmates — who knew that one office could hold so much love? Every day with you has been a blessing, Shruti.</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.30000000000000004s">
         <img src="images/20250817_102714.jpg" alt="Memory 4" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -362,6 +417,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.5s">
         <img src="images/Screenshot_20250328-170429_Photos.jpg" alt="Memory 6" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">✨</div>
+        <h3>Where It All Began</h3>
+        <p>We started in the same company, sat in the same office, and somehow the universe knew we were meant for so much more. Thank you for being my everything.</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.6000000000000001s">
         <img src="images/Screenshot_20250708_230131_Gallery.jpg" alt="Memory 7" loading="lazy" onclick="openLightbox(this.src)">
@@ -372,6 +432,11 @@
       <div class="photo-card" style="animation-delay: 0.8s">
         <img src="images/Screenshot_20250818_120245_Instagram.jpg" alt="Memory 9" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">🥰</div>
+        <h3>My Favorite Person</h3>
+        <p>You make ordinary days extraordinary. Your smile lights up my world, and your laughter is my favorite sound. Happy Birthday, Shruti!</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.9s">
         <img src="images/Screenshot_20250824_090311_WhatsApp.jpg" alt="Memory 10" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -380,6 +445,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.1s">
         <img src="images/Screenshot_20251204_184757_Photos.jpg" alt="Memory 12" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🎂</div>
+        <h3>A Birthday Wish</h3>
+        <p>On your special day, I want you to know — you deserve all the happiness in the world. May this year bring you everything your beautiful heart desires.</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.2s">
         <img src="images/Screenshot_20251204_184816_Photos.jpg" alt="Memory 13" loading="lazy" onclick="openLightbox(this.src)">
@@ -390,6 +460,11 @@
       <div class="photo-card" style="animation-delay: 0.4s">
         <img src="images/Screenshot_20251204_184906_Photos.jpg" alt="Memory 15" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">💫</div>
+        <h3>You Are My Home</h3>
+        <p>No matter where life takes us, you will always be my safe place. I am so grateful for every moment we have shared together.</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.5s">
         <img src="images/Screenshot_20251204_184929_Photos.jpg" alt="Memory 16" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -398,6 +473,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.7000000000000001s">
         <img src="images/Screenshot_20251204_185014_Photos.jpg" alt="Memory 18" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🌹</div>
+        <h3>To My Better Half</h3>
+        <p>3 years of memories, laughter, late-night talks, and growing together. I wouldn't trade a single second. Here's to forever, Shruti.</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.8s">
         <img src="images/Screenshot_20251204_185042_Photos.jpg" alt="Memory 19" loading="lazy" onclick="openLightbox(this.src)">
@@ -408,6 +488,11 @@
       <div class="photo-card" style="animation-delay: 0s">
         <img src="images/Screenshot_20251204_185126_Photos.jpg" alt="Memory 21" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">🎉</div>
+        <h3>Celebrating You!</h3>
+        <p>Today is all about YOU — the most amazing, beautiful, and kind-hearted person I know. I am so lucky to call you mine. Happy Birthday!</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.1s">
         <img src="images/Screenshot_20251204_185142_Photos.jpg" alt="Memory 22" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -416,6 +501,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.30000000000000004s">
         <img src="images/Screenshot_20251204_185229_Photos.jpg" alt="Memory 24" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">💐</div>
+        <h3>From Desk Mates to Soulmates</h3>
+        <p>Who would have thought that two people sitting in the same office would end up writing the most beautiful love story? I love our story.</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.4s">
         <img src="images/Screenshot_20251204_185310_Photos.jpg" alt="Memory 25" loading="lazy" onclick="openLightbox(this.src)">
@@ -426,6 +516,11 @@
       <div class="photo-card" style="animation-delay: 0.6000000000000001s">
         <img src="images/Screenshot_20251215_175959_Photos.jpg" alt="Memory 27" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">🦋</div>
+        <h3>Growing Together</h3>
+        <p>From our first conversation to this very moment — we have grown so much together. Every chapter with you gets better and better.</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.7000000000000001s">
         <img src="images/Screenshot_20260324_160332_Photos.jpg" alt="Memory 28" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -434,6 +529,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.9s">
         <img src="images/Screenshot_20260501_212323_Photos.jpg" alt="Memory 30" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🌙</div>
+        <h3>My Constant</h3>
+        <p>Through every high and low, every laugh and tear, you have been my rock. I love you more than words can say. Happy Birthday, beautiful!</p>
       </div>
       <div class="photo-card" style="animation-delay: 0s">
         <img src="images/Screenshot_20260501_212349_Photos.jpg" alt="Memory 31" loading="lazy" onclick="openLightbox(this.src)">
@@ -444,6 +544,11 @@
       <div class="photo-card" style="animation-delay: 0.2s">
         <img src="images/Screenshot_20260501_212419_Photos.jpg" alt="Memory 33" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">🫶</div>
+        <h3>Forever Grateful</h3>
+        <p>Grateful for every sunrise I wake up knowing you are in my life. You make everything worth it. Cheers to another amazing year together!</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.30000000000000004s">
         <img src="images/Screenshot_20260501_212500_Photos.jpg" alt="Memory 34" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -452,6 +557,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.5s">
         <img src="images/Screenshot_20260501_212535_Photos.jpg" alt="Memory 36" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🎈</div>
+        <h3>Here's to Us</h3>
+        <p>Every photo here holds a memory. Every memory holds a feeling. And every feeling reminds me how deeply I love you, Shruti Pachkate. 💜</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.6000000000000001s">
         <img src="images/Screenshot_20260501_212544_Photos.jpg" alt="Memory 37" loading="lazy" onclick="openLightbox(this.src)">
@@ -462,6 +572,11 @@
       <div class="photo-card" style="animation-delay: 0.8s">
         <img src="images/Screenshot_20260501_212616_Photos.jpg" alt="Memory 39" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">🥂</div>
+        <h3>A Toast to You</h3>
+        <p>To the girl who turned a regular office into a love story — may your birthday be as wonderful and special as you are to me.</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.9s">
         <img src="images/Screenshot_20260501_212625_Photos.jpg" alt="Memory 40" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -470,6 +585,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.1s">
         <img src="images/Screenshot_20260501_212734_Photos.jpg" alt="Memory 42" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🌸</div>
+        <h3>My Sunshine</h3>
+        <p>You bring color to my world and warmth to my soul. 3+ years and I still get butterflies when I see you smile. Never stop smiling, Shruti.</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.2s">
         <img src="images/Screenshot_20260501_212750_Photos.jpg" alt="Memory 43" loading="lazy" onclick="openLightbox(this.src)">
@@ -480,6 +600,11 @@
       <div class="photo-card" style="animation-delay: 0.4s">
         <img src="images/Screenshot_20260501_212842_Photos.jpg" alt="Memory 45" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">💌</div>
+        <h3>A Promise</h3>
+        <p>I promise to keep making you laugh, to hold your hand through everything, and to celebrate every single birthday with you. Always and forever.</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.5s">
         <img src="images/Screenshot_20260501_212858_Photos.jpg" alt="Memory 46" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -488,6 +613,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.7000000000000001s">
         <img src="images/Screenshot_20260501_213003_Photos.jpg" alt="Memory 48" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🎊</div>
+        <h3>The Best Chapter</h3>
+        <p>Life gave me many things, but the best gift was finding you. Happy Birthday to the one who makes my heart complete. 💜</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.8s">
         <img src="images/Screenshot_20260501_213024_Photos.jpg" alt="Memory 49" loading="lazy" onclick="openLightbox(this.src)">
@@ -498,6 +628,11 @@
       <div class="photo-card" style="animation-delay: 0s">
         <img src="images/Screenshot_20260501_213214_Photos.jpg" alt="Memory 51" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">⭐</div>
+        <h3>You Shine Bright</h3>
+        <p>Among all the people in the world, you shine the brightest. Keep being the incredible person you are. The world is better because you are in it.</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.1s">
         <img src="images/Screenshot_20260501_213254_Photos.jpg" alt="Memory 52" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -506,6 +641,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.30000000000000004s">
         <img src="images/Screenshot_20260501_213401_Photos.jpg" alt="Memory 54" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🌷</div>
+        <h3>My Endless Love</h3>
+        <p>From sharing a workplace to sharing a life — every moment has been worth it. I love you endlessly, Shruti. Happy Birthday, my love!</p>
       </div>
       <div class="photo-card" style="animation-delay: 0.4s">
         <img src="images/Screenshot_20260501_213455_Photos.jpg" alt="Memory 55" loading="lazy" onclick="openLightbox(this.src)">
@@ -516,6 +656,11 @@
       <div class="photo-card" style="animation-delay: 0.6000000000000001s">
         <img src="images/Screenshot_20260501_213541_Photos.jpg" alt="Memory 57" loading="lazy" onclick="openLightbox(this.src)">
       </div>
+      <div class="message-card">
+        <div class="msg-emoji">💝</div>
+        <h3>More Than Words</h3>
+        <p>No birthday message can capture what you mean to me. But I hope these photos, these memories, remind you of how beautiful our journey has been.</p>
+      </div>
       <div class="photo-card" style="animation-delay: 0.7000000000000001s">
         <img src="images/Screenshot_20260501_213645_Photos.jpg" alt="Memory 58" loading="lazy" onclick="openLightbox(this.src)">
       </div>
@@ -524,6 +669,11 @@
       </div>
       <div class="photo-card" style="animation-delay: 0.9s">
         <img src="images/Screenshot_20260501_213709_Photos.jpg" alt="Memory 60" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+      <div class="message-card">
+        <div class="msg-emoji">🎁</div>
+        <h3>The Greatest Gift</h3>
+        <p>You are the greatest gift life has ever given me. On your birthday, I just want to say — thank you for choosing me. I love you, Shruti Pachkate. 💜🎂</p>
       </div>
       <div class="photo-card" style="animation-delay: 0s">
         <img src="images/Screenshot_20260501_213910_Photos.jpg" alt="Memory 61" loading="lazy" onclick="openLightbox(this.src)">

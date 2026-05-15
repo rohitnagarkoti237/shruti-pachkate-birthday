@@ -54,8 +54,8 @@ userPhotos.forEach((img, i) => {
         <img src="images/${img}" alt="Memory ${i+1}" loading="lazy" onclick="openLightbox(this.src)">
       </div>`);
   
-  // After every 3 photos, insert a message card
-  if ((i + 1) % 3 === 0 && msgIndex < birthdayMessages.length) {
+  // After every 4 photos, insert a message card
+  if ((i + 1) % 4 === 0 && msgIndex < birthdayMessages.length) {
     const msg = birthdayMessages[msgIndex];
     photoCardsArr.push(`
       <div class="message-card">
@@ -265,7 +265,7 @@ const html = `<!DOCTYPE html>
     /* Photo Grid */
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
     .photo-card {
@@ -427,14 +427,26 @@ const html = `<!DOCTYPE html>
     }
 
     /* Responsive */
+    @media (max-width: 1024px) {
+      .photo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
     @media (max-width: 768px) {
-      .hero h1 { font-size: 42px; }
-      .hero .subtitle { font-size: 18px; }
-      .section-title { font-size: 32px; }
+      .hero { min-height: 80vh; padding: 32px 16px; }
+      .hero h1 { font-size: 36px; }
+      .hero .subtitle { font-size: 16px; }
+      .hero .emojis { font-size: 36px; }
+      .section { padding: 48px 16px; }
+      .section-title { font-size: 28px; }
+      .section-subtitle { font-size: 14px; margin-bottom: 24px; }
       .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .photo-card { border-radius: 8px; }
       .video-grid { grid-template-columns: 1fr; }
-      #nameOverlay h1 { font-size: 56px; }
-      .welcome-box h1 { font-size: 28px; }
+      .video-card { border-radius: 12px; }
+      #nameOverlay h1 { font-size: 48px; }
+      #nameOverlay p { font-size: 22px; }
+      .welcome-box h1 { font-size: 26px; }
+      .welcome-box .cake { font-size: 60px; }
+      .enter-btn { padding: 14px 40px; font-size: 16px; }
     }
   </style>
 </head>
